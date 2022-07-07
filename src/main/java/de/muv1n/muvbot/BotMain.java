@@ -26,6 +26,7 @@ public class BotMain {
 
         //TODO: TWITCH INTEGRATION (TWITCH4J)
         //TODO: YOUTUBE INTEGRATION (EASY-YOUTUBE)
+        //TODO: EXPORT TO AN JAR FILE
 
         Dotenv config;
         config = Dotenv.configure().load();
