@@ -38,3 +38,5 @@ build/
 
 ### Mac OS ###
 .DS_Store
+/out/artifacts/MuVBot_jar/MuVBot.jar
+/src/main/java/de/muv1n/muvbot/util/Token.java
