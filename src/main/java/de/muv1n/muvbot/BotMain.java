@@ -29,7 +29,6 @@ public class BotMain {
         //TODO: YOUTUBE INTEGRATION (EASY-YOUTUBE)
 
         //TODO: MORE COMMANDS
-        //TODO: SOCIAL COMMAND (!social youtube/twitch)
         //TODO: HELP COMMAND
 
         builder = JDABuilder.createDefault(Token.getToken());
