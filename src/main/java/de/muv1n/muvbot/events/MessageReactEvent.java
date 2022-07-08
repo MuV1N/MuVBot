@@ -4,6 +4,7 @@ import net.dv8tion.jda.api.EmbedBuilder;
 import net.dv8tion.jda.api.entities.Category;
 import net.dv8tion.jda.api.entities.Role;
 import net.dv8tion.jda.api.entities.TextChannel;
+import net.dv8tion.jda.api.entities.emoji.CustomEmoji;
 import net.dv8tion.jda.api.entities.emoji.Emoji;
 import net.dv8tion.jda.api.events.message.react.MessageReactionAddEvent;
 import net.dv8tion.jda.api.events.message.react.MessageReactionRemoveEvent;
@@ -31,22 +32,19 @@ public class MessageReactEvent extends ListenerAdapter {
 
         //TODO: SUPPORT AND PROPOSALS
         //TODO: AUTO CHANNEL CREATING
-        //TODO: LEARN MYSQL FOR NAMES
+        //TODO: LEARN MYSQL FOR SAVING CHANNEL IDS
 
         if (e.getChannel() == support && e.getEmoji().equals(Emoji.fromUnicode("U+1f3ab"))){
             e.getGuild().createTextChannel(Objects.requireNonNull(e.getGuild().getJDA().getUserById(e.getUserIdLong())).getName() + "-Support", ticketCategory).queue();
-            if (!e.getUserId().equals("943541805218156624")) {
-                String sc = e.getGuildChannel().getName();
-                //sc.sendMessageEmbeds(supportChannelEmbed().build()).queue();
-            }else{
-                return;
-            }
+            System.out.println("Channel Created");
+            e.getChannel().removeReactionById("994729397821116506", Emoji.fromUnicode("U+1f3ab")).queue();
+            System.out.println("Removed");
         }
     }
     private EmbedBuilder supportChannelEmbed(){
         EmbedBuilder e = new EmbedBuilder();
         e.setColor(Color.RED);
-        e.addField("Wenn du ihr fertig seit, dann Reagiere mit :lock: auf diese Nachricht", "", true);
+        e.addField("Wenn du fertig bist, dann Reagiere mit :lock: auf diese Nachricht", "", true);
         return e;
     }
 
@@ -62,4 +60,5 @@ public class MessageReactEvent extends ListenerAdapter {
             }
         }
     }
+
 }

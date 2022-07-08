@@ -3,10 +3,11 @@ package de.muv1n.muvbot;
 import de.muv1n.muvbot.events.MemberGuildJoin;
 import de.muv1n.muvbot.events.MessageReactEvent;
 import de.muv1n.muvbot.events.MessageRecive;
-import io.github.cdimascio.dotenv.Dotenv;
+import de.muv1n.muvbot.util.Token;
 import net.dv8tion.jda.api.JDA;
 import net.dv8tion.jda.api.JDABuilder;
 import net.dv8tion.jda.api.OnlineStatus;
+import net.dv8tion.jda.api.entities.Activity;
 import net.dv8tion.jda.api.entities.User;
 import net.dv8tion.jda.api.requests.GatewayIntent;
 import net.dv8tion.jda.api.utils.MemberCachePolicy;
@@ -26,15 +27,13 @@ public class BotMain {
 
         //TODO: TWITCH INTEGRATION (TWITCH4J)
         //TODO: YOUTUBE INTEGRATION (EASY-YOUTUBE)
-        //TODO: EXPORT TO AN JAR FILE
 
-        Dotenv config;
-        config = Dotenv.configure().load();
-        builder = JDABuilder.createDefault(config.get("TOKEN"));
+        builder = JDABuilder.createDefault(Token.getToken());
         builder.enableIntents(GatewayIntent.GUILD_MEMBERS);
         builder.enableIntents(GatewayIntent.GUILD_MESSAGE_REACTIONS, GatewayIntent.GUILD_MESSAGE_TYPING, GatewayIntent.GUILD_MESSAGES);
         builder.setMemberCachePolicy(MemberCachePolicy.ALL);
         builder.setStatus(OnlineStatus.ONLINE);
+        builder.setActivity(Activity.streaming("Schau mir beim Zocken oder Programmieren auf Twitch zu", "https://twitch.tv/muv1n"));
         builder.addEventListeners(new MessageReactEvent());
         builder.addEventListeners(new MemberGuildJoin());
         builder.addEventListeners(new MessageRecive());
