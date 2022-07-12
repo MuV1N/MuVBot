@@ -27,18 +27,16 @@ public class MessageReactEvent extends ListenerAdapter {
                 return;
             }
             e.getGuild().addRoleToMember(Objects.requireNonNull(e.getMember()), community).queue();
+            e.getGuild().removeRoleFromMember(e.getMember(), Objects.requireNonNull(e.getGuild().getRoleById("995772937330233374"))).queue();
             e.getGuild().getTextChannelById("994251439704645682").sendMessage(e.getMember().getAsMention() + " hat sich erfolgreich die Regeln Duechgelesen!:white_check_mark:").queue();
         }
 
         //TODO: SUPPORT AND PROPOSALS
-        //TODO: AUTO CHANNEL CREATING
         //TODO: LEARN MYSQL FOR SAVING CHANNEL IDS
 
         if (e.getChannel() == support && e.getEmoji().equals(Emoji.fromUnicode("U+1f3ab"))){
             e.getGuild().createTextChannel(Objects.requireNonNull(e.getGuild().getJDA().getUserById(e.getUserIdLong())).getName() + "-Support", ticketCategory).queue();
-            System.out.println("Channel Created");
             e.getChannel().removeReactionById("994729397821116506", Emoji.fromUnicode("U+1f3ab")).queue();
-            System.out.println("Removed");
         }
     }
     private EmbedBuilder supportChannelEmbed(){

@@ -13,13 +13,15 @@ public class SupportMessageCommand extends ListenerAdapter {
     @Override
     public void onMessageReceived(MessageReceivedEvent e) {
         TextChannel s = e.getGuild().getTextChannelById("994702317817450516");
-        if (e.getChannel() == s) {
-            if (e.getMessage().getContentStripped().equalsIgnoreCase("!s")) {
-                e.getChannel().sendMessageEmbeds(support().build()).queue();
+        if (e.getGuild().getMember(e.getMember()).getRoles().contains(e.getGuild().getRoleById("993823735129841724")) || e.getGuild().getMember(e.getMember()).getRoles().contains(e.getGuild().getRoleById("994208124972048485"))){
+            if (e.getChannel() == s) {
+                if (e.getMessage().getContentStripped().equalsIgnoreCase("!s")) {
+                    e.getChannel().sendMessageEmbeds(support().build()).queue();
 
-                //TODO: MESSAGE REACTION AFTER SENDING
+                    //TODO: MESSAGE REACTION AFTER SENDING
 
-                e.getMessage().delete().queue();
+                    e.getMessage().delete().queue();
+                }
             }
         }
     }

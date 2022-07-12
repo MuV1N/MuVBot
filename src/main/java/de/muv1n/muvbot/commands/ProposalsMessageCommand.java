@@ -15,11 +15,16 @@ public class ProposalsMessageCommand extends ListenerAdapter {
         TextChannel v = e.getGuild().getTextChannelById("993822029860048957");
         String[] m = e.getMessage().getContentStripped().split(" ");
 
-        if (e.getChannel() == v) {
-            if (e.getMessage().getContentStripped().equalsIgnoreCase("!v")) {
-                e.getChannel().sendMessageEmbeds(proposals().build()).queue();
-                //e.getChannel().addReactionById(e.getChannel().getLatestMessageId(), Emoji.fromUnicode("U+1f3ab")).queue();
-                e.getMessage().delete().queue();
+        if (e.getGuild().getMember(e.getMember()).getRoles().contains(e.getGuild().getRoleById("993823735129841724")) || e.getGuild().getMember(e.getMember()).getRoles().contains(e.getGuild().getRoleById("994208124972048485"))){
+            if (e.getChannel() == v) {
+                if (e.getMessage().getContentStripped().equalsIgnoreCase("!v")) {
+                    e.getChannel().sendMessageEmbeds(proposals().build()).queue();
+
+                    //TODO: MESSAGE REACTION AFTER SENDING
+
+                    //e.getChannel().addReactionById(e.getChannel().getLatestMessageId(), Emoji.fromUnicode("U+1f3ab")).queue();
+                    e.getMessage().delete().queue();
+                }
             }
         }
     }

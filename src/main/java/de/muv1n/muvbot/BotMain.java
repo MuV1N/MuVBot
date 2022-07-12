@@ -6,6 +6,7 @@ import de.muv1n.muvbot.commands.SocialCommand;
 import de.muv1n.muvbot.commands.SupportMessageCommand;
 import de.muv1n.muvbot.events.MemberGuildJoin;
 import de.muv1n.muvbot.events.MessageReactEvent;
+import de.muv1n.muvbot.reactionroles.ReactionRoles;
 import de.muv1n.muvbot.util.Token;
 import net.dv8tion.jda.api.JDA;
 import net.dv8tion.jda.api.JDABuilder;
@@ -27,6 +28,7 @@ public class BotMain {
 
         //TODO: TWITCH INTEGRATION (TWITCH4J)
         //TODO: YOUTUBE INTEGRATION (EASY-YOUTUBE)
+        //TODO: AUTO CHANNEL CREATING
 
         //TODO: MORE COMMANDS
         //TODO: HELP COMMAND
@@ -37,7 +39,7 @@ public class BotMain {
         builder.setMemberCachePolicy(MemberCachePolicy.ALL);
         builder.setStatus(OnlineStatus.ONLINE);
         builder.setActivity(Activity.streaming("Schau MuV1N beim Zocken oder Programmieren auf Twitch zu", "https://twitch.tv/muv1n"));
-        builder.addEventListeners(new MessageReactEvent(), new MemberGuildJoin(), new SupportMessageCommand(), new ProposalsMessageCommand(), new RuleCommand(), new SocialCommand());
+        builder.addEventListeners(new MessageReactEvent(), new MemberGuildJoin(), new SupportMessageCommand(), new ProposalsMessageCommand(), new RuleCommand(), new SocialCommand(), new ReactionRoles());
         shardMan = builder.build();
         System.out.println("[Bot] Online");
         stop();

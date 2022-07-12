@@ -1,12 +1,15 @@
 package de.muv1n.muvbot.events;
 
 import net.dv8tion.jda.api.EmbedBuilder;
-import net.dv8tion.jda.api.entities.MessageEmbed;
+import net.dv8tion.jda.api.entities.Category;
+import net.dv8tion.jda.api.entities.Role;
 import net.dv8tion.jda.api.events.guild.member.GuildMemberJoinEvent;
+import net.dv8tion.jda.api.events.guild.member.GuildMemberRemoveEvent;
 import net.dv8tion.jda.api.hooks.ListenerAdapter;
 import org.jetbrains.annotations.NotNull;
 
 import java.awt.*;
+import java.util.Objects;
 import java.util.Random;
 
 public class MemberGuildJoin extends ListenerAdapter {
@@ -23,6 +26,13 @@ public class MemberGuildJoin extends ListenerAdapter {
         eb.setThumbnail(e.getUser().getEffectiveAvatarUrl());
         eb.setTitle(":heart:-Wilkommen :wave:");
         eb.addField("Du bist der " + e.getGuild().getMemberCount() + " :technologist: Nutzer auf diesem server!", "",false);
-        e.getGuild().getTextChannelById("993818825374040105").sendMessageEmbeds(eb.build()).queue();
+        Role verifizieren = e.getGuild().getRoleById("995772937330233374");
+        int memberCount = e.getGuild().getMemberCount();
+        e.getGuild().addRoleToMember(Objects.requireNonNull(e.getMember()), verifizieren).queue();
+        Objects.requireNonNull(e.getGuild().getTextChannelById("993818825374040105")).sendMessageEmbeds(eb.build()).queue();
+        Objects.requireNonNull(e.getGuild().getVoiceChannelById("995775427631120495")).getManager().setName("Midglieder: " + memberCount).queue();
+
+
     }
+
 }
